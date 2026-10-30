@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useProfile } from "@/components/AuthGate";
+import Link from "next/link";
 
 type Row = {
   id: string;
@@ -102,7 +103,9 @@ export default function EventsPage() {
           <tbody>
             {rows.map((r) => (
               <tr key={r.id} className="border-b">
-                <td className="py-2 font-medium">{r.event_code}</td>
+                <td className="py-2 font-medium">
+  <Link href={`/events/${r.id}`} className="underline">{r.event_code}</Link>
+</td>
                 <td className="py-2">
                   {designs[r.id] ? (
                     <a href={designs[r.id]} target="_blank" rel="noreferrer">
