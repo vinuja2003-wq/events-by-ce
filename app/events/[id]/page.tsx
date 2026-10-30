@@ -6,6 +6,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useProfile } from "@/components/AuthGate";
 import EventInventory from "@/components/EventInventory";
+import TaskBoard from "@/components/TaskBoard";
 
 type EventRow = {
   id: string;
@@ -319,6 +320,7 @@ export default function EventDetail() {
         </div>
       </section>
       <EventInventory eventId={ev.id} blockStart={ev.block_start} blockEnd={ev.block_end} />
+            <TaskBoard eventId={ev.id} />
       <section>
         <h2 className="mb-3 text-lg font-semibold">Job details</h2>
         <form onSubmit={saveDetails} className="grid gap-4 md:grid-cols-2">
