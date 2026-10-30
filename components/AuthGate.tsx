@@ -90,6 +90,7 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
       <header className="flex items-center justify-between border-b px-6 py-3">
         <nav className="flex items-center gap-6">
           <span className="font-bold">Events By CE</span>
+          <Link href="/dashboard" className="hover:underline">Dashboard</Link>
           <Link href="/" className="hover:underline">Events</Link>
                     <Link href="/inventory" className="hover:underline">Inventory</Link>
                               <Link href="/tasks" className="hover:underline">Tasks</Link>
