@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { useProfile } from "@/components/AuthGate";
 import EventInventory from "@/components/EventInventory";
 import TaskBoard from "@/components/TaskBoard";
+import EventReminders from "@/components/EventReminders";
 
 type EventRow = {
   id: string;
@@ -319,6 +320,7 @@ export default function EventDetail() {
           </div>
         </div>
       </section>
+            <EventReminders event={ev} />
       <EventInventory eventId={ev.id} blockStart={ev.block_start} blockEnd={ev.block_end} />
             <TaskBoard eventId={ev.id} />
       <section>
