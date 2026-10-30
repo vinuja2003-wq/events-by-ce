@@ -88,6 +88,7 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
         <nav className="flex items-center gap-6">
           <span className="font-bold">Events By CE</span>
           <Link href="/" className="hover:underline">Events</Link>
+                    <Link href="/inventory" className="hover:underline">Inventory</Link>
           {profile.role === "owner" && (
             <Link href="/events/new" className="hover:underline">New booking</Link>
           )}
