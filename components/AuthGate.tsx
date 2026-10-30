@@ -25,13 +25,16 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
       setLoading(false);
       return;
     }
-    const { data, error } = await supabase
+        const { data, error } = await supabase
       .from("profiles")
-      .select("id, full_name, role")
+      .select("id, full_name, role, active")
       .eq("id", user.id)
       .single();
     if (error) setMessage(error.message);
-    else setProfile(data as Profile);
+    else if (!data.active) {
+      await supabase.auth.signOut();
+      setMessage("This account has been deactivated. Please contact the owner.");
+    } else setProfile(data as Profile);
     setLoading(false);
   }
 
@@ -90,8 +93,11 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
           <Link href="/" className="hover:underline">Events</Link>
                     <Link href="/inventory" className="hover:underline">Inventory</Link>
                               <Link href="/tasks" className="hover:underline">Tasks</Link>
-          {profile.role === "owner" && (
-            <Link href="/events/new" className="hover:underline">New booking</Link>
+                    {profile.role === "owner" && (
+            <>
+              <Link href="/events/new" className="hover:underline">New booking</Link>
+              <Link href="/team" className="hover:underline">Team</Link>
+            </>
           )}
         </nav>
         <div className="flex items-center gap-4 text-sm">
